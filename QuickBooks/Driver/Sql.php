@@ -1918,7 +1918,6 @@ abstract class QuickBooks_Driver_Sql extends QuickBooks_Driver
 	 * @param mixed $extra				Any extra data you want to store with the mapping
 	 * @return boolean
 	 */
-	/*
 	protected function _identMap($user, $objecttype, $uniqueid, $qb_ident, $editsequence = '', $extra = null)
 	{
 		if ($user and $objecttype and $uniqueid and $qb_ident)
@@ -1962,7 +1961,6 @@ abstract class QuickBooks_Driver_Sql extends QuickBooks_Driver
 
 		return false;
 	}
-	*/
 
 	/**
 	 *

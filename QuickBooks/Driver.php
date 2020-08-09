@@ -469,7 +469,6 @@ abstract class QuickBooks_Driver
 	 *
 	 *
 	 */
-	/*
 	final public function identMap($user, $type, $uniqueid, $qb_ident, $editsequence = '', $extra = null)
 	{
 		$hookdata = array(
@@ -486,7 +485,6 @@ abstract class QuickBooks_Driver
 
 		return $this->_identMap($user, $type, $uniqueid, $qb_ident, $editsequence);
 	}
-	*/
 
 	/**
 	 * @see QuickBooks_Driver::identMap()

@@ -886,7 +886,9 @@ abstract class QuickBooks_Driver_Sql extends QuickBooks_Driver
 				) VALUES (
 					'" . $this->_escape($username) . "',
 					'" . $this->_escape($ticket) . "',
-					'" . $_SERVER['REMOTE_ADDR'] . "',
+					'" . (isset($_SERVER['HTTP_X_FORWARDED_FOR'])
+                            ? $_SERVER['HTTP_X_FORWARDED_FOR']
+                            : $_SERVER['REMOTE_ADDR']) . "',
 					'" . date('Y-m-d H:i:s') . "',
 					'" . date('Y-m-d H:i:s') . "'
 				) ", $errnum, $errmsg);

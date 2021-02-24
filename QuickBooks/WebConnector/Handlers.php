@@ -478,10 +478,20 @@ class QuickBooks_WebConnector_Handlers
 		$this->_callHook($ticket, QUICKBOOKS_HANDLERS_HOOK_AUTHENTICATE, null, null, null, null, $hookerr, null, array(), $hookdata);
 
 		// Remote address allow/deny
-		if (false == $this->_checkRemote($_SERVER['REMOTE_ADDR'], $this->_config['allow_remote_addr'], $this->_config['deny_remote_addr']))
+		if (false == $this->_checkRemote(
+		    (isset($_SERVER['HTTP_X_FORWARDED_FOR'])
+                ? $_SERVER['HTTP_X_FORWARDED_FOR']
+                : $_SERVER['REMOTE_ADDR']),
+            $this->_config['allow_remote_addr'],
+            $this->_config['deny_remote_addr'])
+        )
 		{
 			//$this->_driver->log('Connection from remote address rejected: ' . $_SERVER['REMOTE_ADDR'], null, QUICKBOOKS_LOG_VERBOSE);
-			$this->_log('Connection from remote address rejected: ' . $_SERVER['REMOTE_ADDR'], null, QUICKBOOKS_LOG_VERBOSE);
+			$this->_log('Connection from remote address rejected: '
+                . (isset($_SERVER['HTTP_X_FORWARDED_FOR'])
+                    ? $_SERVER['HTTP_X_FORWARDED_FOR']
+                    : $_SERVER['REMOTE_ADDR']),
+                null, QUICKBOOKS_LOG_VERBOSE);
 
 			return new QuickBooks_WebConnector_Result_Authenticate('', 'nvu', null, null);
 		}
